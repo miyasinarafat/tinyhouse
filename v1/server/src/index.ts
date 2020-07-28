@@ -1,10 +1,12 @@
+// env settings
+require("dotenv").config();
+
 import express, {Application} from 'express';
 import {ApolloServer} from "apollo-server-express";
 import {connectDatabase} from "./database";
 import {typeDefs, resolvers} from "./graphql";
 
 
-const port = 9000;
 const mount = async (app: Application) => {
     // mongodb connection
     const db = await connectDatabase();
@@ -17,8 +19,8 @@ const mount = async (app: Application) => {
     });
     server.applyMiddleware({app, path: '/api'});
 
-    app.listen(port);
-    console.log(`[app]: http://localhost:${port}`);
+    app.listen(process.env.PORT);
+    console.log(`[app]: http://localhost:${process.env.PORT}`);
 };
 
 mount(express());
