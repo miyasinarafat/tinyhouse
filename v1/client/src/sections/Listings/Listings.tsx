@@ -1,5 +1,9 @@
 import React from "react";
 
-export const Listings = () => {
-    return <h2>Listings from listings component!</h2>
+interface Props {
+    title: string
+}
+
+export const Listings = ({ title }: Props) => {
+    return <h2>{title}</h2>
 }
