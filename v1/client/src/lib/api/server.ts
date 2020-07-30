@@ -1,9 +1,10 @@
-interface Body {
-    query: string
+interface Body<TVariables> {
+    query: string;
+    variables?: TVariables;
 }
 
 export const server = {
-    fetch: async (body: Body) => {
+    fetch: async <TData = any, TVariables = any>(body: Body<TVariables>) => {
         const response = await fetch("/api", {
             method: "POST",
             headers: {
@@ -12,6 +13,6 @@ export const server = {
             body: JSON.stringify(body)
         });
 
-        return response.json();
+        return response.json() as Promise<{data: TData}>;
     }
 };
