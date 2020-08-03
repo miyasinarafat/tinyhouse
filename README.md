@@ -1,2 +1,2 @@
 # tinyhouse
-TinyHouse: MERN stack project from fullstack.io with Typescript and Graphql api.
+TinyHouse: MERN stack project from newline.co with Typescript and Graphql api.
