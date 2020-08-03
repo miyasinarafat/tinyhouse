@@ -1,6 +1,12 @@
+import {threadId} from "worker_threads";
+
 interface Body<TVariables> {
     query: string;
     variables?: TVariables;
+}
+
+interface Error {
+    message: string;
 }
 
 export const server = {
@@ -13,6 +19,13 @@ export const server = {
             body: JSON.stringify(body)
         });
 
-        return response.json() as Promise<{data: TData}>;
+        if (!response.ok) {
+            throw new Error("Failed to fetch from server!");
+        }
+
+        return response.json() as Promise<{
+            data: TData,
+            errors: Error[]
+        }>;
     }
 };
